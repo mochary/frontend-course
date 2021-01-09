@@ -77,6 +77,13 @@
     font-size: 1em;
 }
 
+/* example - changing css for low resolution devices (mobile) */
+@media (max-width: 599px) {
+    .tweet-button {
+        background-color: yellow;
+    }
+}
+
 .profile-image {
     width: 3em;
     height: 3em;
