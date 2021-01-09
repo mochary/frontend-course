@@ -8,11 +8,11 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: flex-start;
 }
 
-.news-feed-container {
+.center-page {
     flex-grow: 2;
 }
 
@@ -73,6 +73,69 @@
     background-color: #38A1F2;
     color: white;
     border-radius: 2em;
-    border-width: 0em;
+    border-width: 0;
     font-size: 1em;
+}
+
+.profile-image {
+    width: 3em;
+    height: 3em;
+    border-radius: 2em;
+    border-width: 0;
+}
+
+
+.top-tweet-area {
+    display: flex;
+    justify-content: start;
+    align-items: flex-end;
+    padding: 0.5em;
+}
+
+.tweet-text-area {
+    width: 20em;
+    height: 4em;
+    border-color: blue;
+    border-radius: 1em;
+    margin-left: 1em;
+}
+
+.tweet-action-container {
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+    padding: 0.5em;
+}
+
+.tweet-action-item {
+    padding: 1em;
+}
+
+.news-feed-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.feed-item {
+    padding: 2em;
+    border:1px solid blue;
+    border-radius: 1em;
+    margin: 1em;
+}
+
+.feed-item-action-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.feed-item-action {
+    display: flex;
+    white-space: nowrap;
+    justify-content: flex-start;
+}
+
+.feed-item-action-img {
+    width: 2em;
+    height: 1em;
+
 }
