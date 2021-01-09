@@ -1,0 +1,104 @@
+/* h1 - don't use generic html tag, only specific*/
+
+/* space between class names - applies for title class under article-container class, anywhere in the tree below it */
+/* space between class names - order matters */
+/* weight = 2, so stronger than later .title definition which has only weight one */
+.article-container .title {
+    color: darkmagenta;
+}
+
+/* apply to first child of all title that is direct child of article-container */
+.article-container > .title :first-child{
+    color: orange;
+}
+
+.article-container .title-span {
+    color:green;
+    font-size:50px
+}
+
+.title-span {
+    border:1px solid purple;
+}
+
+/* TODO: add example for sibling element using + instead of > */
+
+
+/* only the first child of article-container */
+/* also has last-child */
+.article-container:first-child {
+    color: salmon;
+}
+
+/* only the n-th child of article-container */
+/* can be useful for tables - alternating colors of even and odd rows */
+.article-container:nth-child(2n+1) {
+    color: cadetblue;
+}
+
+.article-container .title:hover {
+    background-color: yellow;
+}
+
+input:focus {
+    border:1px solid yellow;
+}
+
+/* TODO: add example for :visited for a link */
+
+/* element specific, has high weight, less useful */
+#myId {
+
+}
+
+/* no space between class names - applies when the two classes are on the same element */
+/* no space between class names - order does not matter */
+/* weight = 2, and later in the definition, so overrides the former one */
+.main-title.title {
+
+}
+
+.title ,
+.sub-title {
+    /* DO NOT USE !important as it overrides all scoring rules */
+    color: blue;
+}
+
+.sub-title {
+    font-size: 16px;
+}
+
+
+/* Presence selector */
+/* Apply class rules on image with alt attribute */
+img[alt] {
+
+}
+
+/* Value selector */
+/* Apply class rules on image with specific src */
+img[src='/pathToImage.png'] {
+
+}
+
+/* Value selector */
+/* Apply class rules on input of type password */
+input[type="password"] {
+    border:1px solid green;
+}
+
+.gong-button {
+    padding: 5px;
+    background-color: aqua;
+    color: blueviolet;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.payment-page .gong-button {
+    font-size: 60px;
+    color: black;
+}
+
+
+/*  TODO: control overflow behavior using style attributes: overflow and text-overflow */
