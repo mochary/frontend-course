@@ -3,13 +3,14 @@
         <title>Twitter page example</title>
         <link rel="stylesheet" href="sass/style.css">
         <script src="js/tweets.js"></script>
+        <script src="js/user.js"></script>
         <script src="js/script.js"></script>
         <!-- TODO: check why it does not scale well for mobile -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
 
-    <template id="feed-item-template">
+    <template id="feedItemTemplate">
         <div class="feed-item">
             <img class="profile-image">
             <span class="user-name"></span>
@@ -34,6 +35,15 @@
             </div>
         </div>
     </template>
+
+    <!-- TODO: better place the template inside the relevant div? -->
+    <template id="profileFeedDetails">
+        <div class="details">
+            <span class="profile-name">Profile name</span>
+            <span class="subtitle">Bla bla</span>
+        </div>
+    </template>
+
 
     <div class="page-container">
         <div class="left-side-menu-container">
@@ -76,11 +86,66 @@
                 </div>
             </div>
 
-            <div class="news-feed-container" id="news-feed-container"></div>
+            <div class="feed-container" id="newsFeedContainer"></div>
         </div>
 
         <div class="profile-feed" id="profileFeed">
-            <div>Here we are in the center of town</div>
+            <div class="profile-container">
+                <div class="profile-top" id="profileTop">
+                    <!-- TODO: add a back button -->
+                    <!-- <div class="back-button"></div> -->
+                </div>
+                <img class="cover-image">
+                <!-- TODO: how to overlap the profile image on the cover image above? -->
+                <div class="profile-image-container">
+                    <div class="left-profile-details" id="leftProfileDetails">
+                        <img class="profile-image">
+                    </div>
+                    <button class="gong-button">Edit Profile</button>
+                </div>
+                <div class="about-me"></div>
+                <div class="additional-details">
+                    <div class="additional-detail location">
+                        <!-- TODO: add attribute as follows -->
+<!--                        Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>-->
+                        <img src="assets/placeholder.svg">
+                        <span class="grayed-text"></span>
+                    </div>
+                    <div class="additional-detail website-link">
+                        <!-- TODO: add attribute as follows -->
+<!--                        Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>-->
+                        <img src="assets/link.svg">
+                        <a></a>
+                    </div>
+                    <div class="additional-detail joined-date">
+                        <!-- TODO: add attribute as follows -->
+<!--                        Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>-->
+                        <img src="assets/calendar.svg">
+                        <span class="grayed-text"></span>
+                    </div>
+                </div>
+                <div class="follow-container" id="followContainer">
+                    <div class="following">
+                        <span class="count"></span>
+                        <span class="grayed-text">Following</span>
+                    </div>
+                    <div class="followers">
+                        <span class="count"></span>
+                        <span class="grayed-text">Followers</span>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-tabs-container">
+                <div class="tabs">
+                    <!-- TODO: how to create the blue line below the selected tab ? -->
+                    <span class="profile-tab selected">Tweets</span>
+                    <span class="profile-tab not-selected">Tweets & replies</span>
+                    <span class="profile-tab not-selected">Media</span>
+                    <span class="profile-tab not-selected">Likes</span>
+                </div>
+                <hr/>
+                <div class="feed-container" id="myTopTweetsContainer"></div>
+            </div>
         </div>
 
 
