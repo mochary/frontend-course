@@ -137,5 +137,9 @@
 .page-container .right-side-menu-container .search-container input[type=text] {
   border-radius: 1em;
 }
+.page-container .profile-feed {
+  flex-grow: 2;
+  display: none;
+}
 
 /*# sourceMappingURL=style.css.map */

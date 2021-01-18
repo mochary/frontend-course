@@ -1,3 +1,5 @@
+$center-feed-flex-grow: 2;
+
 @mixin for-size($size) {
   @if $size == phone-only {
     @media (max-width: 599px) { @content;}

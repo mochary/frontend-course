@@ -87,7 +87,7 @@
 
 
     .center-news-feed {
-        flex-grow: 2;
+        flex-grow: $center-feed-flex-grow;
 
         .tweet-area {
 
@@ -163,6 +163,11 @@
         .search-container input[type=text] {
             border-radius: 1em;
         }
+    }
+
+    .profile-feed {
+        flex-grow: $center-feed-flex-grow;
+        display: none;
     }
 
 }
