@@ -43,7 +43,7 @@
         }
 
         .side-menu-image {
-            /* TODO: how to change to responsive image size? Using em did not work */
+             // TODO: how to change to responsive image size? Using em did not work.
             width: 30px;
             height: 30px;
             // TODO: how can I see in Chrome tools "Elements" the :hover style
@@ -140,87 +140,93 @@
         display: none;
         flex-direction: column;
 
-        .profile-top {
-            .details {
-                padding: 0.5em;
-                display: flex;
-                flex-direction: column;
-            }
-        }
-
-        .profile-name {
-            font-size: 1.3em;
-            font-weight: bold;
-        }
-
-        .subtitle {
-            color: gray;
-        }
-
-        .cover-image {
-            width: max-content;
-            height: 15em;
-        }
-
-        .profile-image-container {
+        .profile-container {
             display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;;
-        }
+            flex-direction: column;
 
-        .left-profile-details {
-            padding: 1em;
-
-            .profile-image {
-                width: 8em;
-                height: 8em;
-                border-radius: 6em;
-                border-width: 1em;
+            .profile-top {
+                .details {
+                    padding: 0.5em;
+                    display: flex;
+                    flex-direction: column;
+                }
             }
 
-            .details {
-                display: flex;
-                flex-direction: column;
-            }
-        }
-
-        .about-me {
-            padding: 1em;
-            font-size: 1.3em;
-        }
-
-        .additional-details {
-            display: flex;
-            flex-direction: row;
-            padding-left: 1em;
-
-            .additional-detail {
-                padding: 0.5em;
-            }
-
-            img {
-                width: 1.3em;
-                height: 1.3em;
-            }
-
-        }
-
-        .grayed-text {
-            color: gray;
-        }
-
-        .follow-container {
-            display: flex;
-            flex-direction: row;
-            padding: 1em;
-
-            .count {
+            .profile-name {
+                font-size: 1.3em;
                 font-weight: bold;
             }
 
-            .following {
-                padding-right: 1em;
+            .subtitle {
+                color: gray;
+            }
+
+            .profile-background-image {
+                height: 15em;
+                background-size: 100% 100%;
+            }
+
+            .profile-image-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;;
+            }
+
+            .left-profile-details {
+                padding: 1em;
+                margin-top: -6em;
+
+                .profile-image {
+                    width: 8em;
+                    height: 8em;
+                    border-width: 1em;
+                    border: 0.25em solid var(--white,#fff)
+                }
+
+                .details {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+
+            .about-me {
+                padding: 1em;
+                font-size: 1.3em;
+            }
+
+            .additional-details {
+                display: flex;
+                flex-direction: row;
+                padding-left: 1em;
+
+                .additional-detail {
+                    padding: 0.5em;
+                }
+
+                img {
+                    width: 1.3em;
+                    height: 1.3em;
+                }
+
+            }
+
+            .grayed-text {
+                color: gray;
+            }
+
+            .follow-container {
+                display: flex;
+                flex-direction: row;
+                padding: 1em;
+
+                .count {
+                    font-weight: bold;
+                }
+
+                .following {
+                    padding-right: 1em;
+                }
             }
         }
 

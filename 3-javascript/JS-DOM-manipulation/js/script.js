@@ -31,7 +31,7 @@ function loadUserData() {
     clone.querySelector('.profile-name').innerHTML = user.name;
     clone.querySelector('.subtitle').innerHTML = this.tweets.length + ' Tweets';
     document.getElementById('profileTop').appendChild(clone);
-    document.getElementById('profileFeed').querySelector('.cover-image').setAttribute('src', user.coverImagePath);
+    document.getElementById('profileFeed').querySelector('.profile-background-image').style.setProperty('background-image', "url(" + user.coverImagePath + ")");
 
     let leftProfileDetails = document.getElementById('leftProfileDetails');
     leftProfileDetails.querySelector('.profile-image').setAttribute('src', user.profileImagePath);
