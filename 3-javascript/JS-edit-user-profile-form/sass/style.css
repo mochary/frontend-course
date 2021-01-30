@@ -161,26 +161,31 @@
   flex-grow: 2;
   display: none;
   flex-direction: column;
+  padding-left: 2em;
+  padding-right: 2em;
 }
 .page-container .profile-feed .profile-container {
   display: flex;
   flex-direction: column;
 }
-.page-container .profile-feed .profile-container .profile-top .details {
+.page-container .profile-feed .profile-container .profile-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.page-container .profile-feed .profile-container .profile-header .details {
   padding: 0.5em;
   display: flex;
   flex-direction: column;
 }
-.page-container .profile-feed .profile-container .profile-name {
-  font-size: 1.3em;
-  font-weight: bold;
+.page-container .profile-feed .profile-container .profile-header .back-button {
+  width: 2em;
+  height: 2em;
+  padding-left: 1em;
+  padding-right: 0.5em;
 }
 .page-container .profile-feed .profile-container .subtitle {
   color: gray;
-}
-.page-container .profile-feed .profile-container .profile-background-image {
-  height: 15em;
-  background-size: 100% 100%;
 }
 .page-container .profile-feed .profile-container .profile-image-container {
   display: flex;
@@ -245,6 +250,40 @@
 }
 .page-container .profile-feed .profile-tabs-container .tabs .not-selected {
   color: gray;
+}
+.page-container .profile-feed .profile-name {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+.page-container .profile-feed .profile-background-image {
+  height: 15em;
+  background-size: 100% 100%;
+}
+.page-container .profile-feed .edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+}
+.page-container .profile-feed .edit-profile-form .edit-profile-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+}
+.page-container .profile-feed .edit-profile-form .edit-profile-header .close-button {
+  width: 1em;
+  height: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.page-container .profile-feed .edit-profile-form .profile-inputs {
+  padding: 1em;
+}
+.page-container .profile-feed .edit-profile-form .profile-inputs .profile-input {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2em;
 }
 
 /*# sourceMappingURL=style.css.map */

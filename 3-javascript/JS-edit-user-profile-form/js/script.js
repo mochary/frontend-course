@@ -1,3 +1,21 @@
+function fillEditProfileInput(id, value, maxLength) {
+    let inputElement = document.getElementById(id);
+    inputElement.innerHTML = value;
+    inputElement.addEventListener('input', onEditProfileKeyUp);
+    inputElement.parentNode.querySelector('.filled-chars').innerHTML = value.length;
+    inputElement.parentNode.querySelector('.max-chars').innerHTML = maxLength;
+}
+
+function onEditProfileKeyUp() {
+    let value = this.value;
+    let maxChars = this.parentNode.querySelector('.max-chars').innerHTML;
+    if (value.length > maxChars) {
+        value = value.substring(0, maxChars);
+        this.value = value;
+    }
+    let charCounterElement = this.parentNode.querySelector('.chars-counter');
+    charCounterElement.querySelector('.filled-chars').innerHTML = value.length;
+}
 
 function loadTweet(data, template, container) {
     let clone = template.content.cloneNode(true);
@@ -31,7 +49,11 @@ function loadUserData() {
     clone.querySelector('.profile-name').innerHTML = user.name;
     clone.querySelector('.subtitle').innerHTML = this.tweets.length + ' Tweets';
     document.getElementById('profileTop').appendChild(clone);
-    document.getElementById('profileFeed').querySelector('.profile-background-image').style.setProperty('background-image', "url(" + user.coverImagePath + ")");
+    document.getElementById('profileFeed').querySelector('.profile-container').querySelector('.profile-background-image').style.setProperty('background-image', "url(" + user.coverImagePath + ")");
+    document.getElementById('profileFeed').querySelector('.edit-profile-form').querySelector('.profile-background-image').style.setProperty('background-image', "url(" + user.coverImagePath + ")");
+    fillEditProfileInput('edit-profile-name', user.name, 50);
+    fillEditProfileInput('edit-profile-bio', user.aboutMe, 160);
+    fillEditProfileInput('edit-profile-location', user.location, 30);
 
     let leftProfileDetails = document.getElementById('leftProfileDetails');
     leftProfileDetails.querySelector('.profile-image').setAttribute('src', user.profileImagePath);

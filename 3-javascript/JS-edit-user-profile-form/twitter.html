@@ -91,22 +91,47 @@
         </div>
 
         <div class="profile-feed" id="profileFeed">
-<!--            <div class="edit-profile-form">-->
-<!--                <div class="edit-profile-top">-->
-<!--                    <div class="edit-profile-top-left">-->
-<!--                        &lt;!&ndash; TODO: add a back button &ndash;&gt;-->
-<!--                        &lt;!&ndash; <div class="back-button"></div> &ndash;&gt;-->
-<!--                        <span>Edit profile</span>-->
-<!--                    </div>-->
-<!--                    <button class="gong-tweet-button">Save</button>-->
-<!--                </div>-->
-<!--                <div class="profile-background-image"></div>-->
-<!--            </div>-->
+
+            <div class="edit-profile-form">
+                <div class="edit-profile-header">
+                    <div class="edit-profile-header-left">
+                        <img class="close-button" src="assets/close.svg"></img>
+                        <span class="profile-name">Edit profile</span>
+                    </div>
+                    <button class="gong-tweet-button">Save</button>
+                </div>
+                <!-- TODO: fix background image - currently height 0 -->
+                <div class="profile-background-image"></div>
+                <!-- TODO: add profile image                -->
+                <div class="profile-inputs">
+                    <!-- TODO: consider changing items below to template -->
+                    <div class="profile-input" id="profile-input-name">
+                        <label for="edit-profile-name">Name</label>
+                        <textarea class="profile-input-text" id="edit-profile-name"></textarea>
+                        <div class="chars-counter">
+                            <span class="filled-chars"></span>/<span class="max-chars">1000</span>
+                        </div>
+                    </div>
+                    <div class="profile-input" id="profile-input-bio">
+                        <label for="edit-profile-bio">Bio</label>
+                        <textarea class="profile-input-text" id="edit-profile-bio"></textarea>
+                        <div class="chars-counter">
+                            <span class="filled-chars">0</span>/<span class="max-chars">1000</span>
+                        </div>
+                    </div>
+                    <div class="profile-input" id="profile-input-location">
+                        <label for="edit-profile-location">Location</label>
+                        <textarea class="profile-input-text" id="edit-profile-location"></textarea>
+                        <div class="chars-counter">
+                            <span class="filled-chars">0</span>/<span class="max-chars">1000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="profile-container">
-                <div class="profile-top" id="profileTop">
-                    <!-- TODO: add a back button -->
-                    <!-- <div class="back-button"></div> -->
+                <div class="profile-header" id="profileTop">
+                    <img class="back-button" src="assets/left-arrow.svg"></img>
                 </div>
                 <div class="profile-background-image"></div>
                 <div class="profile-image-container">

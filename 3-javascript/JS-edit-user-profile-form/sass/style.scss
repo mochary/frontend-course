@@ -139,32 +139,42 @@
         flex-grow: $center-feed-flex-grow;
         display: none;
         flex-direction: column;
+        padding-left: 2em;
+        padding-right: 2em;
 
         .profile-container {
             display: flex;
             flex-direction: column;
 
-            .profile-top {
+            .profile-header {
+
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
                 .details {
                     padding: 0.5em;
                     display: flex;
                     flex-direction: column;
                 }
-            }
 
-            .profile-name {
-                font-size: 1.3em;
-                font-weight: bold;
+                .back-button {
+                    width: 2em;
+                    height: 2em;
+                    padding-left: 1em;
+                    padding-right: 0.5em;
+                }
             }
 
             .subtitle {
                 color: gray;
             }
 
-            .profile-background-image {
-                height: 15em;
-                background-size: 100% 100%;
-            }
+            // TODO: remove commented code below
+            //.profile-background-image {
+            //    height: 15em;
+            //    background-size: 100% 100%;
+            //}
 
             .profile-image-container {
                 display: flex;
@@ -250,6 +260,60 @@
                     color: gray;
                 }
             }
+        }
+
+        .profile-name {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .profile-background-image {
+            height: 15em;
+            background-size: 100% 100%;
+        }
+
+
+        .edit-profile-form {
+            // TODO: toggle view from js
+            //display: none;
+            display: flex;
+            flex-direction: column;
+            padding: 2em;
+
+            .edit-profile-header {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1em;
+
+                .close-button {
+                    width: 1em;
+                    height: 1em;
+                    padding-left: 1em;
+                    padding-right: 1em;
+                }
+            }
+
+            .profile-inputs {
+                padding: 1em;
+
+                .profile-input {
+                    display: flex;
+                    flex-direction: column;
+                    padding-bottom: 2em;
+                }
+            }
+        //<div class="profile-inputs">
+        //<!-- TODO: consider changing items below to template -->
+        //<div class="profile-input" id="profile-input-name">
+        //<label for="edit-profile-name">Name</label>
+        //<textarea class="profile-input-text" id="edit-profile-name"></textarea>
+        //<span class="remaining-chars"></span>
+        //</div>
+
+
+
         }
 
     }
