@@ -1,0 +1,29 @@
+.feed-container {
+  display: flex;
+  flex-direction: column;
+
+  .feed-item {
+    padding: 2em;
+    border:1px solid blue;
+    border-radius: 1em;
+    margin: 1em;
+  }
+
+  .feed-item-action-container {
+    display: flex;
+    justify-content: space-around;
+
+    .feed-item-action {
+      display: flex;
+      white-space: nowrap;
+      justify-content: flex-start;
+    }
+
+    .feed-item-action-img {
+      width: 2em;
+      height: 1em;
+    }
+
+  }
+
+}

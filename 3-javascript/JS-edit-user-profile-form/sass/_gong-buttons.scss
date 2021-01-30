@@ -1,0 +1,38 @@
+@import "color-and-text";
+
+$gong-button-width: 10em;
+$gong-button-height: 3em;
+
+.gong-tweet-button {
+  width: $gong-button-width;
+  height: $gong-button-height;
+  padding: 1em;
+  background-color: $tweet-button-color;
+  color: white;
+  border-radius: 2em;
+  border-width: 0;
+  font-size: 1em;
+
+  /* example - changing css for low resolution devices (mobile) */
+  @media (max-width: 599px) {
+    background-color: yellow;
+  }
+}
+
+.gong-button {
+  width: $gong-button-width;
+  height: $gong-button-height;
+  padding: 1em;
+  background-color: white;
+  color: $tweet-button-color;
+  border-radius: 2em;
+  border-width: 0.1em;
+  border-color: $tweet-button-color;
+  font-size: 1em;
+  font-weight: bold;
+
+  /* example - changing css for low resolution devices (mobile) */
+  @media (max-width: 599px) {
+    background-color: yellow;
+  }
+}
