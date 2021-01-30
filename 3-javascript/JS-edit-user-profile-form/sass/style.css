@@ -67,6 +67,19 @@
   }
 }
 
+.noscroll {
+  overflow: hidden;
+}
+
+.noclicks {
+  pointer-events: none;
+}
+
+.overlay {
+  overflow: scroll;
+  pointer-events: bounding-box;
+}
+
 .page-container {
   display: flex;
   font-size: 16px;
@@ -261,7 +274,14 @@
 .page-container .profile-feed .edit-profile-form {
   display: none;
   flex-direction: column;
-  padding: 2em;
+  margin-top: 10em;
+  margin-left: 5em;
+  z-index: 100;
+  min-width: 40em;
+  position: absolute;
+  background-color: white;
+  opacity: 1;
+  border-radius: 0.5em;
 }
 .page-container .profile-feed .edit-profile-form .edit-profile-header {
   display: flex;
@@ -286,6 +306,7 @@
 }
 .page-container .profile-feed .edit-profile-form .profile-inputs .profile-input .profile-input-text {
   border-color: blue;
+  border-radius: 0.5em;
 }
 .page-container .profile-feed .edit-profile-form .profile-inputs .profile-input .invalid-text {
   border-color: red;

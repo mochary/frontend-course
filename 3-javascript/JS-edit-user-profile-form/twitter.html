@@ -9,7 +9,7 @@
         <!-- TODO: check why it does not scale well for mobile -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
+    <body id="body">
 
     <template id="feedItemTemplate">
         <div class="feed-item">
@@ -92,7 +92,7 @@
 
         <div class="profile-feed" id="profileFeed">
 
-            <div class="edit-profile-form">
+            <div class="edit-profile-form" id="editProfileForm">
                 <div class="edit-profile-header">
                     <div class="edit-profile-header-left">
                         <img class="close-button" src="assets/close.svg" alt="Close" onclick="hideEditProfileForm()">
@@ -133,7 +133,7 @@
             </div>
 
             <div class="profile-container">
-                <div class="profile-header" id="profileTop">
+                <div class="profile-header" id="profileHeader">
                     <img class="back-button" src="assets/left-arrow.svg" alt="Back" onclick="handleHomeMenuItemClick()">
                 </div>
                 <div class="profile-background-image"></div>

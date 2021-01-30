@@ -1,9 +1,16 @@
 function showEditProfileForm() {
     document.querySelector('.edit-profile-form').style.display= 'flex';
+    addCssClass('body', 'noscroll');
+    addCssClass('body', 'noclicks');
+    // TODO: check why scrolling does not work on the modal form
+    addCssClass('editProfileForm', 'overlay');
 }
 
 function hideEditProfileForm() {
     document.querySelector('.edit-profile-form').style.display= 'none';
+    removeCssClass('editProfileForm', 'overlay');
+    removeCssClass('body', 'noscroll');
+    removeCssClass('body', 'noclicks');
 }
 
 function fillEditProfileInput(id, value, maxLength) {
@@ -106,8 +113,8 @@ function loadUserData() {
     let clone = profileFeedDetailsTemplate.content.cloneNode(true);
     clone.querySelector('.profile-name').innerHTML = user.name;
     clone.querySelector('.subtitle').innerHTML = this.tweets.length + ' Tweets';
-    let profileHeader = document.getElementById('profileTop');
-    let existingProfileDetails = document.getElementById('profileTop').querySelector('.details');
+    let profileHeader = document.getElementById('profileHeader');
+    let existingProfileDetails = document.getElementById('profileHeader').querySelector('.details');
     if (existingProfileDetails) {
         profileHeader.replaceChild(clone, existingProfileDetails);
     } else {

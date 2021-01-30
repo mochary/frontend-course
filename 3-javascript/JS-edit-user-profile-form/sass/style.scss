@@ -13,6 +13,19 @@
 
 }
 
+.noscroll {
+    overflow: hidden;
+}
+
+.noclicks {
+    pointer-events: none;
+}
+
+.overlay {
+    overflow: scroll;
+    pointer-events: bounding-box;
+}
+
 .page-container {
     display: flex;
     // should top level font size be relative - eg different for mobile?
@@ -265,11 +278,17 @@
             }
         }
 
-        // TODO: open as a modal form
         .edit-profile-form {
             display: none;
             flex-direction: column;
-            padding: 2em;
+            margin-top: 10em;
+            margin-left: 5em;
+            z-index: 100;
+            min-width: 40em;
+            position: absolute;
+            background-color: white;
+            opacity: 1.0;
+            border-radius: 0.5em;
 
             .edit-profile-header {
                 display: flex;
@@ -296,6 +315,7 @@
 
                     .profile-input-text {
                         border-color: $valid-text-border-color;
+                        border-radius: 0.5em;
                     }
 
                     .invalid-text {
