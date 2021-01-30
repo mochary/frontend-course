@@ -13,7 +13,7 @@
 
     <template id="feedItemTemplate">
         <div class="feed-item">
-            <img class="profile-image">
+            <img class="profile-image" src="" alt="Profile Image">
             <span class="user-name"></span>
             <p class="feed-item-content">
             </p>
@@ -48,26 +48,26 @@
 
     <div class="page-container">
         <div class="left-side-menu-container">
-            <img class="side-menu-image" src="assets/tweeter.svg">
+            <img class="side-menu-image" src="assets/tweeter.svg" alt="Tweeter">
             <div class="menu-items-container">
                 <div class="menu-item" onclick="handleHomeMenuItemClick()">
-                    <img class="side-menu-image" src="assets/explore.svg">
+                    <img class="side-menu-image" src="assets/explore.svg" alt="Home">
                     <span class="side-menu-text">Home</span>
                 </div>
                 <div class="menu-item">
-                    <img class="side-menu-image" src="assets/explore.svg">
+                    <img class="side-menu-image" src="assets/explore.svg" alt="Explore">
                     <span class="side-menu-text">Explore</span>
                 </div>
                 <div class="menu-item">
-                    <img class="side-menu-image" src="assets/explore.svg">
+                    <img class="side-menu-image" src="assets/explore.svg" alt="Notifications">
                     <span class="side-menu-text">Notifications</span>
                 </div>
                 <div class="menu-item" onclick="handleProfileMenuItemClick()">
-                    <img class="side-menu-image profile-image" src="assets/sparky.png">
+                    <img class="side-menu-image profile-image" src="assets/sparky.png" alt="Profile">
                     <span class="side-menu-text">Profile</span>
                 </div>
                 <div class="menu-item">
-                    <img class="side-menu-image" src="assets/settings.svg">
+                    <img class="side-menu-image" src="assets/settings.svg" alt="Settings">
                     <span class="side-menu-text">Settings</span>
                 </div>
             </div>
@@ -76,7 +76,7 @@
         <div class="center-news-feed" id="newsFeed">
             <div class="tweet-area">
                 <div class="top-tweet-area">
-                    <img class="profile-image" src="assets/sparky.png">
+                    <img class="profile-image" src="assets/sparky.png" alt="Profile image">
                     <textarea class="tweet-text-area"></textarea>
                 </div>
                 <div class="tweet-action-container">
@@ -95,14 +95,17 @@
             <div class="edit-profile-form">
                 <div class="edit-profile-header">
                     <div class="edit-profile-header-left">
-                        <img class="close-button" src="assets/close.svg"></img>
+                        <img class="close-button" src="assets/close.svg" alt="Close">
                         <span class="profile-name">Edit profile</span>
                     </div>
                     <button class="gong-tweet-button">Save</button>
                 </div>
-                <!-- TODO: fix background image - currently height 0 -->
+                <!--  TODO: upload + X buttons on the background image  -->
                 <div class="profile-background-image"></div>
-                <!-- TODO: add profile image                -->
+                <div class="left-profile-details">
+                    <!--  TODO: upload + X buttons on the profile image  -->
+                    <img class="profile-image" id="editProfileImage" src="" alt="Upload profile image">
+                </div>
                 <div class="profile-inputs">
                     <!-- TODO: consider changing items below to template -->
                     <div class="profile-input" id="profile-input-name">
@@ -131,27 +134,27 @@
 
             <div class="profile-container">
                 <div class="profile-header" id="profileTop">
-                    <img class="back-button" src="assets/left-arrow.svg"></img>
+                    <img class="back-button" src="assets/left-arrow.svg" alt="Back">
                 </div>
                 <div class="profile-background-image"></div>
                 <div class="profile-image-container">
                     <div class="left-profile-details" id="leftProfileDetails">
-                        <img class="profile-image">
+                        <img class="profile-image" src="" alt="Profile image">
                     </div>
                     <button class="gong-button">Edit Profile</button>
                 </div>
                 <div class="about-me"></div>
                 <div class="additional-details">
                     <div class="additional-detail location">
-                        <img src="assets/placeholder.svg">
+                        <img src="assets/placeholder.svg" alt="Location">
                         <span class="grayed-text"></span>
                     </div>
                     <div class="additional-detail website-link">
-                        <img src="assets/link.svg">
+                        <img src="assets/link.svg" alt="Site">
                         <a></a>
                     </div>
                     <div class="additional-detail joined-date">
-                        <img src="assets/calendar.svg">
+                        <img src="assets/calendar.svg" alt="Calendar">
                         <span class="grayed-text"></span>
                     </div>
                 </div>

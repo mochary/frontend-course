@@ -170,35 +170,11 @@
                 color: gray;
             }
 
-            // TODO: remove commented code below
-            //.profile-background-image {
-            //    height: 15em;
-            //    background-size: 100% 100%;
-            //}
-
             .profile-image-container {
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
-                align-items: center;;
-            }
-
-            .left-profile-details {
-                padding: 1em;
-                margin-top: -6em;
-
-                .profile-image {
-                    width: 8em;
-                    height: 8em;
-                    border-radius: 6em;
-                    border-width: 1em;
-                    border: 0.25em solid var(--white,#fff)
-                }
-
-                .details {
-                    display: flex;
-                    flex-direction: column;
-                }
+                align-items: center;
             }
 
             .about-me {
@@ -272,6 +248,22 @@
             background-size: 100% 100%;
         }
 
+        .left-profile-details {
+            padding: 1em;
+            margin-top: -6em;
+
+            .profile-image {
+                width: 8em;
+                height: 8em;
+                border-radius: 6em;
+                border: 0.25em solid var(--white,#fff)
+            }
+
+            .details {
+                display: flex;
+                flex-direction: column;
+            }
+        }
 
         .edit-profile-form {
             // TODO: toggle view from js
@@ -304,14 +296,6 @@
                     padding-bottom: 2em;
                 }
             }
-        //<div class="profile-inputs">
-        //<!-- TODO: consider changing items below to template -->
-        //<div class="profile-input" id="profile-input-name">
-        //<label for="edit-profile-name">Name</label>
-        //<textarea class="profile-input-text" id="edit-profile-name"></textarea>
-        //<span class="remaining-chars"></span>
-        //</div>
-
 
 
         }

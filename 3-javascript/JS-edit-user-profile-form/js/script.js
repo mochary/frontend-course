@@ -51,6 +51,7 @@ function loadUserData() {
     document.getElementById('profileTop').appendChild(clone);
     document.getElementById('profileFeed').querySelector('.profile-container').querySelector('.profile-background-image').style.setProperty('background-image', "url(" + user.coverImagePath + ")");
     document.getElementById('profileFeed').querySelector('.edit-profile-form').querySelector('.profile-background-image').style.setProperty('background-image', "url(" + user.coverImagePath + ")");
+    document.getElementById('editProfileImage').setAttribute('src', user.profileImagePath);
     fillEditProfileInput('edit-profile-name', user.name, 50);
     fillEditProfileInput('edit-profile-bio', user.aboutMe, 160);
     fillEditProfileInput('edit-profile-location', user.location, 30);
