@@ -265,10 +265,9 @@
             }
         }
 
+        // TODO: open as a modal form
         .edit-profile-form {
-            // TODO: toggle view from js
-            //display: none;
-            display: flex;
+            display: none;
             flex-direction: column;
             padding: 2em;
 

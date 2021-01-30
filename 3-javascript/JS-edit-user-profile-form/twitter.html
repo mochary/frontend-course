@@ -95,7 +95,7 @@
             <div class="edit-profile-form">
                 <div class="edit-profile-header">
                     <div class="edit-profile-header-left">
-                        <img class="close-button" src="assets/close.svg" alt="Close">
+                        <img class="close-button" src="assets/close.svg" alt="Close" onclick="hideEditProfileForm()">
                         <span class="profile-name">Edit profile</span>
                     </div>
                     <button class="gong-tweet-button" onclick="saveUserData()">Save</button>
@@ -134,14 +134,14 @@
 
             <div class="profile-container">
                 <div class="profile-header" id="profileTop">
-                    <img class="back-button" src="assets/left-arrow.svg" alt="Back">
+                    <img class="back-button" src="assets/left-arrow.svg" alt="Back" onclick="handleHomeMenuItemClick()">
                 </div>
                 <div class="profile-background-image"></div>
                 <div class="profile-image-container">
                     <div class="left-profile-details" id="leftProfileDetails">
                         <img class="profile-image" src="" alt="Profile image">
                     </div>
-                    <button class="gong-button">Edit Profile</button>
+                    <button class="gong-button" onclick="showEditProfileForm()">Edit Profile</button>
                 </div>
                 <div class="about-me"></div>
                 <div class="additional-details">

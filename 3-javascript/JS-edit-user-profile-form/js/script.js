@@ -1,3 +1,11 @@
+function showEditProfileForm() {
+    document.querySelector('.edit-profile-form').style.display= 'flex';
+}
+
+function hideEditProfileForm() {
+    document.querySelector('.edit-profile-form').style.display= 'none';
+}
+
 function fillEditProfileInput(id, value, maxLength) {
     let inputElement = document.getElementById(id);
     inputElement.innerHTML = value;
@@ -57,6 +65,7 @@ function removeCssClass(id, className) {
 }
 
 function validateProfileData(name, bio, location) {
+    // TODO: add display why the fields are not validated
     if (name.length < 3) {
         addCssClass("edit-profile-name", "invalid-text");
         return false;
@@ -89,7 +98,7 @@ function saveUserData() {
     user.aboutMe = bio;
     user.location = location;
     loadUserData();
-    // TODO: also change edit profile display to none
+    hideEditProfileForm();
 }
 
 function loadUserData() {

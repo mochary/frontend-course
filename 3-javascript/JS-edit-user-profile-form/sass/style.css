@@ -259,7 +259,7 @@
   flex-direction: column;
 }
 .page-container .profile-feed .edit-profile-form {
-  display: flex;
+  display: none;
   flex-direction: column;
   padding: 2em;
 }
