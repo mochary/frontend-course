@@ -284,5 +284,11 @@
   flex-direction: column;
   padding-bottom: 2em;
 }
+.page-container .profile-feed .edit-profile-form .profile-inputs .profile-input .profile-input-text {
+  border-color: blue;
+}
+.page-container .profile-feed .edit-profile-form .profile-inputs .profile-input .invalid-text {
+  border-color: red;
+}
 
 /*# sourceMappingURL=style.css.map */

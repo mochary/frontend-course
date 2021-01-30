@@ -6,6 +6,11 @@ function fillEditProfileInput(id, value, maxLength) {
     inputElement.parentNode.querySelector('.max-chars').innerHTML = maxLength;
 }
 
+function getEditProfileInput(id) {
+    let inputElement = document.getElementById(id);
+    return inputElement.value;
+}
+
 function onEditProfileKeyUp() {
     let value = this.value;
     let maxChars = this.parentNode.querySelector('.max-chars').innerHTML;
@@ -43,12 +48,62 @@ function loadTweets() {
     }
 }
 
+function addCssClass(id, className) {
+    document.getElementById(id).classList.add(className);
+}
+
+function removeCssClass(id, className) {
+    document.getElementById(id).classList.remove(className);
+}
+
+function validateProfileData(name, bio, location) {
+    if (name.length < 3) {
+        addCssClass("edit-profile-name", "invalid-text");
+        return false;
+    } else {
+        removeCssClass("edit-profile-name", "invalid-text");
+    }
+    if (bio.length < 30) {
+        addCssClass("edit-profile-bio", "invalid-text");
+       return false;
+    } else {
+        removeCssClass("edit-profile-bio", "invalid-text");
+    }
+    if (location.length < 5) {
+        addCssClass("edit-profile-location", "invalid-text");
+        return false;
+    } else {
+        removeCssClass("edit-profile-location", "invalid-text");
+    }
+    return true;
+}
+
+function saveUserData() {
+    let name = getEditProfileInput('edit-profile-name');
+    let bio = getEditProfileInput('edit-profile-bio');
+    let location = getEditProfileInput('edit-profile-location');
+    if (!validateProfileData(name, bio, location)) {
+        return;
+    }
+    user.name = name;
+    user.aboutMe = bio;
+    user.location = location;
+    loadUserData();
+    // TODO: also change edit profile display to none
+}
+
 function loadUserData() {
     let profileFeedDetailsTemplate = document.getElementById('profileFeedDetails');
     let clone = profileFeedDetailsTemplate.content.cloneNode(true);
     clone.querySelector('.profile-name').innerHTML = user.name;
     clone.querySelector('.subtitle').innerHTML = this.tweets.length + ' Tweets';
-    document.getElementById('profileTop').appendChild(clone);
+    let profileHeader = document.getElementById('profileTop');
+    let existingProfileDetails = document.getElementById('profileTop').querySelector('.details');
+    if (existingProfileDetails) {
+        profileHeader.replaceChild(clone, existingProfileDetails);
+    } else {
+        profileHeader.appendChild(clone);
+    }
     document.getElementById('profileFeed').querySelector('.profile-container').querySelector('.profile-background-image').style.setProperty('background-image', "url(" + user.coverImagePath + ")");
     document.getElementById('profileFeed').querySelector('.edit-profile-form').querySelector('.profile-background-image').style.setProperty('background-image', "url(" + user.coverImagePath + ")");
     document.getElementById('editProfileImage').setAttribute('src', user.profileImagePath);
@@ -61,7 +116,12 @@ function loadUserData() {
     clone = profileFeedDetailsTemplate.content.cloneNode(true);
     clone.querySelector('.profile-name').innerHTML = user.name;
     clone.querySelector('.subtitle').innerHTML = '@' + user.name;
-    leftProfileDetails.appendChild(clone);
+    existingProfileDetails = leftProfileDetails.querySelector('.details');
+    if (existingProfileDetails) {
+        leftProfileDetails.replaceChild(clone, existingProfileDetails)
+    } else {
+        leftProfileDetails.appendChild(clone);
+    }
 
     let profileFeed = document.getElementById('profileFeed');
     profileFeed.querySelector('.about-me').innerHTML = user.aboutMe;
