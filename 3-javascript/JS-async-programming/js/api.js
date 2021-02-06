@@ -21,14 +21,15 @@ class TweetAPI {
         return new Promise((resolve, reject) => {
             try {
                 let tweetsData = JSON.parse(localStorage.getItem('tweets'));
+                let newTweetId = tweetsData === null ? 0 : tweetsData.length;
                 let updatedTweetsData = tweetsData === null ?
-                    [{id: 0, tweet }] :
-                    [...tweetsData, {id: tweetsData.length, tweet}]
+                    [{id: newTweetId, tweet }] :
+                    [...tweetsData, {id: newTweetId, tweet}]
                 localStorage.setItem('tweets', JSON.stringify(updatedTweetsData));
 
                 // Note: simulating delay
                 setTimeout(function() {
-                    resolve('success');
+                    resolve(newTweetId);
                 }, 2000);
             }
             catch (err) {

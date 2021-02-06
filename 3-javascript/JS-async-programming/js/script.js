@@ -37,7 +37,7 @@ function onEditProfileKeyUp() {
     charCounterElement.querySelector('.filled-chars').innerHTML = value.length;
 }
 
-function loadTweet(data, template, container) {
+function createTweetElement(data, template) {
     let clone = template.content.cloneNode(true);
     clone.querySelector('.tweet-id').innerHTML = data.id;
     let tweetData = data.tweet;
@@ -47,25 +47,50 @@ function loadTweet(data, template, container) {
     // clone.querySelector('.replies').innerHTML = data.replies;
     // clone.querySelector('.retweets').innerHTML = data.retweets;
     // clone.querySelector('.likes').innerHTML = data.likes;
-    container.appendChild(clone);
+    return clone;
+}
+
+function addTweetAsFirstChildOfContainer(data, template, container) {
+    let clone = createTweetElement(data, template);
+    // container.appendChild(clone);
+    container.insertBefore(clone, container.firstChild);
 }
 
 function loadTweets(tweets) {
     let feedItemTemplate = document.getElementById('feedItemTemplate');
     let tweetContainer = document.getElementById('newsFeedContainer');
+    let firstFeedItem = document.getElementById('newsFeedContainer').firstElementChild;
+    let lastTweetId = firstFeedItem === null ? -1 : firstFeedItem.querySelector('.tweet-id').innerHTML;
+    let tweetsAdded = 0;
+    console.log(`Last tweet id: ${lastTweetId}`);
+
     for (let tweet of tweets) {
-        loadTweet(tweet, feedItemTemplate, tweetContainer);
+        if (tweet.id > lastTweetId ) {
+            addTweetAsFirstChildOfContainer(tweet, feedItemTemplate, tweetContainer);
+            console.log(`Added tweet id ${tweet.id}`);
+            tweetsAdded++;
+        }
     }
-    // load my top 3 tweets
+    console.log(`Added ${tweetsAdded} tweets`);
+
+    // TODO: the code below could be optimized
+    // load my top 3 tweets into my profile
     tweetContainer = document.getElementById('myTopTweetsContainer');
-    for (let tweet of tweets.slice(0,3)) {
-        loadTweet(tweet, feedItemTemplate, tweetContainer);
+    while (tweetContainer.firstChild) {
+        tweetContainer.removeChild(tweetContainer.lastChild);
     }
+    for (let tweet of tweets.slice(-3)) {
+        addTweetAsFirstChildOfContainer(tweet, feedItemTemplate, tweetContainer);
+        console.log(`Added top tweet id ${tweet.id}`);
+    }
+
+    return tweetsAdded;
 }
 
-function loadTweetsFromGlobalVar() {
-    loadTweets(this.tweets);
-}
+// TODO: remove commented code below
+// function loadTweetsFromGlobalVar() {
+//     loadTweets(this.tweets);
+// }
 
 function loadTweetsFromLocalStorage() {
     TweetAPI.getTweets()
@@ -91,6 +116,19 @@ function disableButton(btn) {
     btn.classList.add('clicked');
 }
 
+const loadNewTweetsP = () => {
+    return new Promise( (resolve, reject) =>
+    {
+        TweetAPI.getTweets()
+            .then(response => {
+                resolve(loadTweets(response));
+            })
+            .catch(err => {
+                reject(err);
+            })
+    })
+}
+
 function addTweet(btn) {
     let content = document.getElementById('tweetTextArea');
     if (isBlank(content.value)) {
@@ -107,13 +145,17 @@ function addTweet(btn) {
     }
     content.value = '';
     TweetAPI.addTweet(tweet)
-        .then(response => {
-            console.log(`addTweet response=${response}`)
-            enableButton(btn)
+        .then(newTweetId => {
+            console.log(`Tweet saved successfully via API with new id ${newTweetId}`);
+            return loadNewTweetsP();
+        })
+        .then(tweetsAdded => {
+            console.log(`Loaded ${tweetsAdded} tweets since last tweet id`);
+            enableButton(btn);
         })
         .catch(err => {
-            console.log(`addTweet error=${err}`)
-            enableButton(btn)
+            alert(`addTweet error=${err}`);
+            enableButton(btn);
         })
 }
 
@@ -219,6 +261,7 @@ function handleProfileMenuItemClick() {
 
 window.onload = () => {
     loadUserData();
+    // TODO: remove commented code below
     // loadTweetsFromGlobalVar();
     loadTweetsFromLocalStorage();
 }
