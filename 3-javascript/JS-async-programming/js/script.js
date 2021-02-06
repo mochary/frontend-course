@@ -37,6 +37,36 @@ function onEditProfileKeyUp() {
     charCounterElement.querySelector('.filled-chars').innerHTML = value.length;
 }
 
+// TODO: also update the other view in Home or in Profile
+function toggleLike(img) {
+    let updatedLikesValue = false;
+    if (img.alt === "Like") {
+        setUnlikeImage(img);
+        updatedLikesValue = true;
+    } else {
+        setLikeImage(img);
+    }
+    // Save to localstorage
+    let tweetId = img.parentNode.parentNode.parentNode.querySelector('.tweet-id').innerHTML;
+    TweetAPI.updateTweet(tweetId, { likes: updatedLikesValue})
+        .then(response => {
+            console.log(`Updated like value of tweet ${response}`);
+        })
+        .catch(err => {
+            alert(`Toggle like error: ${err}`);
+        })
+}
+
+function setLikeImage(img) {
+    img.src = "assets/like.svg";
+    img.alt = "Like";
+}
+
+function setUnlikeImage(img) {
+    img.src = "assets/heart.svg";
+    img.alt = "Unlike";
+}
+
 function createTweetElement(data, template) {
     let clone = template.content.cloneNode(true);
     clone.querySelector('.tweet-id').innerHTML = data.id;
@@ -44,6 +74,12 @@ function createTweetElement(data, template) {
     clone.querySelector('.profile-image').setAttribute('src', tweetData.profileImage);
     clone.querySelector('.user-name').innerHTML = tweetData.userName;
     clone.querySelector('.feed-item-content').innerHTML = tweetData.content;
+    let likeImage = clone.querySelector('.feed-item-action-img');
+    if (tweetData.likes) {
+        setUnlikeImage(likeImage);
+    } else {
+        setLikeImage(likeImage);
+    }
     // clone.querySelector('.replies').innerHTML = data.replies;
     // clone.querySelector('.retweets').innerHTML = data.retweets;
     // clone.querySelector('.likes').innerHTML = data.likes;
@@ -56,6 +92,7 @@ function addTweetAsFirstChildOfContainer(data, template, container) {
     container.insertBefore(clone, container.firstChild);
 }
 
+// Returning number of loaded tweets
 function loadTweets(tweets) {
     let feedItemTemplate = document.getElementById('feedItemTemplate');
     let tweetContainer = document.getElementById('newsFeedContainer');
@@ -63,6 +100,10 @@ function loadTweets(tweets) {
     let lastTweetId = firstFeedItem === null ? -1 : firstFeedItem.querySelector('.tweet-id').innerHTML;
     let tweetsAdded = 0;
     console.log(`Last tweet id: ${lastTweetId}`);
+
+    if (!tweets) {
+        return 0;
+    }
 
     for (let tweet of tweets) {
         if (tweet.id > lastTweetId ) {
