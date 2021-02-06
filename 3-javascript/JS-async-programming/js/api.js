@@ -1,3 +1,6 @@
+
+// TODO: While the data did not get to the screen need to show a basic loading gif/image/text
+
 class TweetAPI {
     static getTweets = () => {
         return new Promise((resolve, reject) => {
@@ -43,8 +46,7 @@ class TweetAPI {
             try {
                 let tweetsData = JSON.parse(localStorage.getItem('tweets'));
                 let tweetToUpdate = tweetsData[id].tweet;
-                let updatedTweet = Object.assign(tweetToUpdate, fieldsToUpdate);
-                tweetsData[id].tweet = updatedTweet;
+                tweetsData[id].tweet = Object.assign(tweetToUpdate, fieldsToUpdate);
                 localStorage.setItem('tweets', JSON.stringify(tweetsData));
                 // Note: simulating delay
                 setTimeout(function() {

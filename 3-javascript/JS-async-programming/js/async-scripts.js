@@ -194,16 +194,16 @@ const getUserDataFetch = async () => {
 
 // Custom promise example
 // ---------------------
-class TweetAPI {
-    static getTweets = () => {
-        return new Promise((resolve, reject) => {
-            try {
-                let tweetsData = localStorage.getItem('tweets');
-                resolve(JSON.parse(tweetsData));
-            }
-            catch (err) {
-                reject(err);
-            }
-        })
-    }
-}
+// class TweetAPI {
+//     static getTweets = () => {
+//         return new Promise((resolve, reject) => {
+//             try {
+//                 let tweetsData = localStorage.getItem('tweets');
+//                 resolve(JSON.parse(tweetsData));
+//             }
+//             catch (err) {
+//                 reject(err);
+//             }
+//         })
+//     }
+// }
