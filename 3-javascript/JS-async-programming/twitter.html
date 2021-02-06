@@ -1,0 +1,224 @@
+<html lang="en">
+    <head>
+        <title>Twitter page example</title>
+        <link rel="icon" href="assets/javascript.svg" type="image/x-icon">
+        <link rel="stylesheet" href="sass/style.css">
+        <script src="js/tweets.js"></script>
+        <script src="js/user.js"></script>
+        <script src="js/api.js"></script>
+        <script src="js/script.js"></script>
+        <!-- TODO: check why it does not scale well for mobile -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body id="body">
+
+    <template id="feedItemTemplate">
+        <div class="feed-item">
+            <span class="tweet-id">7</span>
+            <img class="profile-image" src="" alt="Profile Image">
+            <span class="user-name"></span>
+            <p class="feed-item-content">
+            </p>
+            <div class="feed-item-action-container">
+<!--                <div class="feed-item-action">-->
+<!--                    <img class="feed-item-action-img" src="assets/reply.svg" alt="Reply">-->
+<!--                    <span class="feed-item-action-text replies" ></span>-->
+<!--                </div>-->
+<!--                <div class="feed-item-action">-->
+<!--                    <img class="feed-item-action-img" src="assets/retweet.svg" alt="Retweet">-->
+<!--                    <span class="feed-item-action-text retweets"></span>-->
+<!--                </div>-->
+                <div class="feed-item-action">
+                    <img class="feed-item-action-img" src="assets/like.svg" alt="Like">
+<!--                    <span class="feed-item-action-text likes"></span>-->
+                </div>
+<!--                <div class="feed-item-action">-->
+<!--                    <img class="feed-item-action-img" src="assets/share.svg" alt="Share">-->
+<!--                </div>-->
+            </div>
+        </div>
+    </template>
+
+    <!-- TODO: better place the template inside the relevant div? -->
+    <template id="profileFeedDetails">
+        <div class="details">
+            <span class="profile-name">Profile name</span>
+            <span class="subtitle">Bla bla</span>
+        </div>
+    </template>
+
+
+    <div class="page-container">
+        <div class="left-side-menu-container">
+            <img class="side-menu-image" src="assets/tweeter.svg" alt="Tweeter">
+            <div class="menu-items-container">
+                <div class="menu-item" onclick="handleHomeMenuItemClick()">
+                    <img class="side-menu-image" src="assets/explore.svg" alt="Home">
+                    <span class="side-menu-text">Home</span>
+                </div>
+                <div class="menu-item">
+                    <img class="side-menu-image" src="assets/explore.svg" alt="Explore">
+                    <span class="side-menu-text">Explore</span>
+                </div>
+                <div class="menu-item">
+                    <img class="side-menu-image" src="assets/explore.svg" alt="Notifications">
+                    <span class="side-menu-text">Notifications</span>
+                </div>
+                <div class="menu-item" onclick="handleProfileMenuItemClick()">
+                    <img class="side-menu-image profile-image" src="assets/sparky.png" alt="Profile">
+                    <span class="side-menu-text">Profile</span>
+                </div>
+                <div class="menu-item">
+                    <img class="side-menu-image" src="assets/settings.svg" alt="Settings">
+                    <span class="side-menu-text">Settings</span>
+                </div>
+            </div>
+            <button class="gong-tweet-button">Tweet</button>
+        </div>
+        <div class="center-news-feed" id="newsFeed">
+            <div class="tweet-area">
+                <div class="top-tweet-area">
+                    <img class="profile-image" src="assets/sparky.png" alt="Profile image">
+                    <textarea class="tweet-text-area" id="tweetTextArea"></textarea>
+                </div>
+                <div class="tweet-action-container">
+                    <div class="tweet-action-item">Image</div>
+                    <div class="tweet-action-item">Gif</div>
+                    <div class="tweet-action-item">Poll</div>
+                    <button class="gong-tweet-button" onclick="addTweet(this)">Tweet</button>
+                </div>
+            </div>
+
+            <div class="feed-container" id="newsFeedContainer"></div>
+        </div>
+
+        <div class="profile-feed" id="profileFeed">
+
+            <div class="edit-profile-form" id="editProfileForm">
+                <div class="edit-profile-header">
+                    <div class="edit-profile-header-left">
+                        <!-- TODO: show a confirmation dialog before closing the form -->
+                        <img class="close-button" src="assets/close.svg" alt="Close" onclick="hideEditProfileForm()">
+                        <span class="profile-name">Edit profile</span>
+                    </div>
+                    <button class="gong-tweet-button" onclick="saveUserData()">Save</button>
+                </div>
+                <!--  TODO: upload + X buttons on the background image  -->
+                <div class="profile-background-image"></div>
+                <div class="left-profile-details">
+                    <!--  TODO: upload + X buttons on the profile image  -->
+                    <img class="profile-image" id="editProfileImage" src="" alt="Upload profile image">
+                </div>
+                <div class="profile-inputs">
+                    <!-- TODO: consider changing items below to template -->
+                    <div class="profile-input" id="profile-input-name">
+                        <label for="edit-profile-name">Name</label>
+                        <textarea class="profile-input-text" id="edit-profile-name"></textarea>
+                        <div class="chars-counter">
+                            <span class="filled-chars"></span>/<span class="max-chars">1000</span>
+                        </div>
+                    </div>
+                    <div class="profile-input" id="profile-input-bio">
+                        <label for="edit-profile-bio">Bio</label>
+                        <textarea class="profile-input-text" id="edit-profile-bio"></textarea>
+                        <div class="chars-counter">
+                            <span class="filled-chars">0</span>/<span class="max-chars">1000</span>
+                        </div>
+                    </div>
+                    <div class="profile-input" id="profile-input-location">
+                        <label for="edit-profile-location">Location</label>
+                        <textarea class="profile-input-text" id="edit-profile-location"></textarea>
+                        <div class="chars-counter">
+                            <span class="filled-chars">0</span>/<span class="max-chars">1000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-container">
+                <div class="profile-header" id="profileHeader">
+                    <img class="back-button" src="assets/left-arrow.svg" alt="Back" onclick="handleHomeMenuItemClick()">
+                </div>
+                <div class="profile-background-image"></div>
+                <div class="profile-image-container">
+                    <div class="left-profile-details" id="leftProfileDetails">
+                        <img class="profile-image" src="" alt="Profile image">
+                    </div>
+                    <button class="gong-button" onclick="showEditProfileForm()">Edit Profile</button>
+                </div>
+                <div class="about-me"></div>
+                <div class="additional-details">
+                    <div class="additional-detail location">
+                        <img src="assets/placeholder.svg" alt="Location">
+                        <span class="grayed-text"></span>
+                    </div>
+                    <div class="additional-detail website-link">
+                        <img src="assets/link.svg" alt="Site">
+                        <a></a>
+                    </div>
+                    <div class="additional-detail joined-date">
+                        <img src="assets/calendar.svg" alt="Calendar">
+                        <span class="grayed-text"></span>
+                    </div>
+                </div>
+                <div class="follow-container" id="followContainer">
+                    <div class="following">
+                        <span class="count"></span>
+                        <span class="grayed-text">Following</span>
+                    </div>
+                    <div class="followers">
+                        <span class="count"></span>
+                        <span class="grayed-text">Followers</span>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-tabs-container">
+                <div class="tabs">
+                    <!-- TODO: how to create the blue line below the selected tab ? -->
+                    <span class="profile-tab selected">Tweets</span>
+                    <span class="profile-tab not-selected">Tweets & replies</span>
+                    <span class="profile-tab not-selected">Media</span>
+                    <span class="profile-tab not-selected">Likes</span>
+                </div>
+                <hr/>
+                <div class="feed-container" id="myTopTweetsContainer"></div>
+            </div>
+        </div>
+
+
+        <div class="right-side-menu-container">
+            <div class="search-container">
+                <input type="text" placeholder="Search Twitter" name="search">
+            </div>
+            <div class="trends-container">
+                <h3>Trends for you</h3>
+                <div class="trend-item">
+                    Trend 1
+                </div>
+                <div class="trend-item">
+                    Trend 2
+                </div>
+            </div>
+            <div class="follow-container">
+                <h3>Who to follow</h3>
+                <div class="follow-item">
+                    Follow suggestion 1
+                </div>
+                <div class="follow-item">
+                    Follow suggestion 1
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <small>
+            Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+            <br/>
+            Icons made by <a href="https://smashicons.com/" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+        </small>
+    </footer>
+
+    </body>
+</html>
