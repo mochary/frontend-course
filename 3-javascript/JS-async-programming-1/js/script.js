@@ -37,7 +37,6 @@ function onEditProfileKeyUp() {
     charCounterElement.querySelector('.filled-chars').innerHTML = value.length;
 }
 
-// TODO: also update the other view in Home or in Profile
 function toggleLike(img) {
     let updatedLikesValue = false;
     if (img.alt === "Like") {
@@ -46,14 +45,18 @@ function toggleLike(img) {
     } else {
         setLikeImage(img);
     }
+    // TODO: display loading message / gif
     // Save to localstorage
     let tweetId = img.parentNode.parentNode.parentNode.dataset.tweetId;
     TweetAPI.updateTweet(tweetId, { likes: updatedLikesValue})
         .then(response => {
             console.log(`Updated like value of tweet ${response}`);
+            return loadTweetsP()
         })
+        // TODO: .then hide loading message / gif
         .catch(err => {
             alert(`Toggle like error: ${err}`);
+            // TODO: .then hide loading message / gif
         })
 }
 
@@ -116,16 +119,6 @@ function loadTweets(tweets) {
     loadTopTweetIntoContainer(tweets, 3, 'myTopTweetsContainer');
 }
 
-function loadTweetsFromLocalStorage() {
-    TweetAPI.getTweets()
-        .then(response => {
-            loadTweets(response);
-        })
-        .catch(err => {
-            alert(`Error in loading tweets: ${err}`);
-        })
-}
-
 function isBlank(str) {
     return (!str || str.trim().length === 0);
 }
@@ -140,7 +133,7 @@ function disableButton(btn) {
     btn.classList.add('clicked');
 }
 
-const loadNewTweetsP = () => {
+const loadTweetsP = () => {
     return new Promise( (resolve, reject) =>
     {
         TweetAPI.getTweets()
@@ -159,6 +152,7 @@ function addTweet(btn) {
         return;
     }
     console.log(`Adding tweet with content: ${content.value}`);
+    // TODO: display loading message / gif
     disableButton(btn);
     let tweet =
     {
@@ -171,16 +165,18 @@ function addTweet(btn) {
     TweetAPI.addTweet(tweet)
         .then(newTweetId => {
             console.log(`Tweet saved successfully via API with new id ${newTweetId}`);
-            return loadNewTweetsP();
+            return loadTweetsP();
         })
-        .then(tweetsAdded => {
-            console.log(`Loaded ${tweetsAdded} tweets since last tweet id`);
+        .then(() => {
             enableButton(btn);
+            // TODO: hide loading message / gif
         })
         .catch(err => {
             alert(`addTweet error=${err}`);
             enableButton(btn);
+            // TODO: hide loading message / gif
         })
+
 }
 
 function addCssClass(id, className) {
@@ -287,8 +283,17 @@ window.onload = () => {
     loadUserData();
     // TODO: remove commented code below
     // loadTweetsFromGlobalVar();
-    loadTweetsFromLocalStorage();
 
-    setInterval(loadTweetsFromLocalStorage,
-        5000);
+    // TODO: display loading message / gif
+    loadTweetsP()
+        .then(() => {
+            setInterval(loadTweetsP,
+                10000);
+        })
+        // TODO: add .then() hide loading message / gif
+        .catch(err => {
+            alert(`Error loading tweets: ${err}`);
+            // TODO: .then hide loading message / gif
+        });
+
 }
