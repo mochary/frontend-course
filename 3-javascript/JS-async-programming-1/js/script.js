@@ -67,6 +67,9 @@ function setUnlikeImage(img) {
     img.alt = "Unlike";
 }
 
+// TODO: javascript using selectors by class,
+//  coupling js with CSS can be problematic when changing CSS names
+//  check if there is a better way to find items than by class
 function createTweetElement(data, template) {
     let clone = template.content.cloneNode(true);
     clone.querySelector('.feed-item').dataset.tweetId = data.id;
@@ -93,46 +96,25 @@ function addTweetAsFirstChildOfContainer(data, template, container) {
     container.insertBefore(clone, container.firstChild);
 }
 
-// Returning number of loaded tweets
-function loadTweets(tweets) {
-    let feedItemTemplate = document.getElementById('feedItemTemplate');
-    let tweetContainer = document.getElementById('newsFeedContainer');
-    let firstFeedItem = document.getElementById('newsFeedContainer').firstElementChild;
-    let lastTweetId = firstFeedItem === null ? -1 : firstFeedItem.dataset.tweetId;
-    let tweetsAdded = 0;
-    console.log(`Last tweet id: ${lastTweetId}`);
-
-    if (!tweets) {
-        return 0;
-    }
-
-    for (let tweet of tweets) {
-        if (tweet.id > lastTweetId ) {
-            addTweetAsFirstChildOfContainer(tweet, feedItemTemplate, tweetContainer);
-            console.log(`Added tweet id ${tweet.id}`);
-            tweetsAdded++;
-        }
-    }
-    console.log(`Added ${tweetsAdded} tweets`);
-
-    // TODO: the code below could be optimized
-    // load my top 3 tweets into my profile
-    tweetContainer = document.getElementById('myTopTweetsContainer');
+function loadTopTweetIntoContainer(tweets, topN, tweetContainerId) {
+    let tweetContainer = document.getElementById(tweetContainerId);
+    console.log(`Adding up to ${topN} tweets to ${tweetContainer.id}`);
     while (tweetContainer.firstChild) {
         tweetContainer.removeChild(tweetContainer.lastChild);
     }
-    for (let tweet of tweets.slice(-3)) {
-        addTweetAsFirstChildOfContainer(tweet, feedItemTemplate, tweetContainer);
-        console.log(`Added top tweet id ${tweet.id}`);
-    }
 
-    return tweetsAdded;
+    let feedItemTemplate = document.getElementById('feedItemTemplate');
+
+    for (let tweet of tweets.slice(-topN)) {
+        addTweetAsFirstChildOfContainer(tweet, feedItemTemplate, tweetContainer);
+        console.log(`Added tweet id ${tweet.id} to container ${tweetContainer.id}`);
+    }
 }
 
-// TODO: remove commented code below
-// function loadTweetsFromGlobalVar() {
-//     loadTweets(this.tweets);
-// }
+function loadTweets(tweets) {
+    loadTopTweetIntoContainer(tweets, 20, 'newsFeedContainer');
+    loadTopTweetIntoContainer(tweets, 3, 'myTopTweetsContainer');
+}
 
 function loadTweetsFromLocalStorage() {
     TweetAPI.getTweets()
@@ -306,4 +288,7 @@ window.onload = () => {
     // TODO: remove commented code below
     // loadTweetsFromGlobalVar();
     loadTweetsFromLocalStorage();
+
+    setInterval(loadTweetsFromLocalStorage,
+        5000);
 }
