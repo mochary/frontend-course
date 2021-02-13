@@ -103,6 +103,11 @@ const cookBeefP = (beef) => {
     })
 }
 
+// identical function using async - returns promise just like cookBeefP
+const cookBeefPAsync = async (beef) => {
+    return `Cooked ${beef}`;
+}
+
 const getBunsP = (cookedBeef) => {
     // Do some logic
     // End logic
@@ -151,9 +156,11 @@ const makeBurgerPromiseAll = () => {
     Promise.all([getBeefP, cookBeefP, getBunsP, putBeefBetweenBunsP])
         .then(values => {
             // run some code here
+            console.log(values);
         })
 }
 
+// TODO: add Promise all example using async
 
 
 // Async example
@@ -162,6 +169,8 @@ const makeBurgerAsyncAwait = async () => {
     try {
         const beef = await getBeefP();
         const cookedBeef = await cookBeefP(beef);
+        // Alternatively we can call the async function
+        // const cookedBeef = await cookBeefPAsync(beef);
         const bunsWithBeef = await getBunsP(cookedBeef);
         const readyBurger = await putBeefBetweenBunsP(bunsWithBeef);
         console.log(`Async Await ${readyBurger}`);

@@ -48,9 +48,6 @@
   border-radius: 1em;
   margin: 1em;
 }
-.feed-container .feed-item .tweet-id {
-  visibility: hidden;
-}
 .feed-container .feed-item-action-container {
   display: flex;
   justify-content: flex-start;

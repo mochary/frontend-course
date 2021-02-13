@@ -47,7 +47,7 @@ function toggleLike(img) {
         setLikeImage(img);
     }
     // Save to localstorage
-    let tweetId = img.parentNode.parentNode.parentNode.querySelector('.tweet-id').innerHTML;
+    let tweetId = img.parentNode.parentNode.parentNode.dataset.tweetId;
     TweetAPI.updateTweet(tweetId, { likes: updatedLikesValue})
         .then(response => {
             console.log(`Updated like value of tweet ${response}`);
@@ -69,7 +69,8 @@ function setUnlikeImage(img) {
 
 function createTweetElement(data, template) {
     let clone = template.content.cloneNode(true);
-    clone.querySelector('.tweet-id').innerHTML = data.id;
+    clone.querySelector('.feed-item').dataset.tweetId = data.id;
+
     let tweetData = data.tweet;
     clone.querySelector('.profile-image').setAttribute('src', tweetData.profileImage);
     clone.querySelector('.user-name').innerHTML = tweetData.userName;
@@ -97,7 +98,7 @@ function loadTweets(tweets) {
     let feedItemTemplate = document.getElementById('feedItemTemplate');
     let tweetContainer = document.getElementById('newsFeedContainer');
     let firstFeedItem = document.getElementById('newsFeedContainer').firstElementChild;
-    let lastTweetId = firstFeedItem === null ? -1 : firstFeedItem.querySelector('.tweet-id').innerHTML;
+    let lastTweetId = firstFeedItem === null ? -1 : firstFeedItem.dataset.tweetId;
     let tweetsAdded = 0;
     console.log(`Last tweet id: ${lastTweetId}`);
 
