@@ -281,7 +281,6 @@ function handleProfileMenuItemClick() {
 
 }
 
-// TODO: displayed only on the home page, not on the profile page
 function showLoadingIndication() {
     document.getElementById("tweetLoading").style.display = 'block';
 }

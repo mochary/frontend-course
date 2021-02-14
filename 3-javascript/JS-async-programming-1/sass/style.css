@@ -164,16 +164,6 @@
 .page-container .center-news-feed .tweet-action-container .tweet-action-item {
   padding: 1em;
 }
-.page-container .center-news-feed .loading {
-  position: fixed;
-  top: 3em;
-  opacity: 0.6;
-  z-index: 1000;
-}
-.page-container .center-news-feed .loading img {
-  max-width: 30em;
-  border-radius: 2em;
-}
 .page-container .right-side-menu-container {
   flex-grow: 1;
 }
@@ -323,6 +313,17 @@
 }
 .page-container .profile-feed .edit-profile-form .profile-inputs .profile-input .invalid-text {
   border-color: red;
+}
+.page-container .loading {
+  position: fixed;
+  top: 3em;
+  left: calc((100vw - 40em)/2);
+  opacity: 0.6;
+  z-index: 1000;
+}
+.page-container .loading img {
+  max-width: 30em;
+  border-radius: 2em;
 }
 
 /*# sourceMappingURL=style.css.map */

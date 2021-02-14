@@ -133,18 +133,6 @@
 
         }
 
-        .loading {
-            position: fixed;
-            top: 3em;
-            opacity: 0.6;
-            z-index: 1000;
-
-            img {
-                max-width: 30em;
-                border-radius: 2em;
-            }
-        }
-
     }
 
     .right-side-menu-container {
@@ -339,6 +327,20 @@
         }
 
     }
+
+    .loading {
+        position: fixed;
+        top: 3em;
+        left: calc((100vw - 40em)/2);
+        opacity: 0.6;
+        z-index: 1000;
+
+        img {
+            max-width: 30em;
+            border-radius: 2em;
+        }
+    }
+
 
 }
 
