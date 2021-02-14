@@ -45,7 +45,7 @@ function toggleLike(img) {
     } else {
         setLikeImage(img);
     }
-    // TODO: display loading message / gif
+    showLoadingIndication();
     // Save to localstorage
     let tweetId = img.parentNode.parentNode.parentNode.dataset.tweetId;
     TweetAPI.updateTweet(tweetId, { likes: updatedLikesValue})
@@ -53,10 +53,12 @@ function toggleLike(img) {
             console.log(`Updated like value of tweet ${response}`);
             return loadTweetsP()
         })
-        // TODO: .then hide loading message / gif
+        .then(() => {
+            hideLoadingIndication();
+        })
         .catch(err => {
             alert(`Toggle like error: ${err}`);
-            // TODO: .then hide loading message / gif
+            hideLoadingIndication();
         })
 }
 
@@ -152,7 +154,7 @@ function addTweet(btn) {
         return;
     }
     console.log(`Adding tweet with content: ${content.value}`);
-    // TODO: display loading message / gif
+    showLoadingIndication();
     disableButton(btn);
     let tweet =
     {
@@ -169,12 +171,12 @@ function addTweet(btn) {
         })
         .then(() => {
             enableButton(btn);
-            // TODO: hide loading message / gif
+            hideLoadingIndication();
         })
         .catch(err => {
             alert(`addTweet error=${err}`);
             enableButton(btn);
-            // TODO: hide loading message / gif
+            hideLoadingIndication();
         })
 
 }
@@ -279,21 +281,32 @@ function handleProfileMenuItemClick() {
 
 }
 
+// TODO: displayed only on the home page, not on the profile page
+function showLoadingIndication() {
+    document.getElementById("tweetLoading").style.display = 'block';
+}
+
+function hideLoadingIndication() {
+    document.getElementById("tweetLoading").style.display = 'none';
+}
+
 window.onload = () => {
     loadUserData();
     // TODO: remove commented code below
     // loadTweetsFromGlobalVar();
 
-    // TODO: display loading message / gif
+    showLoadingIndication();
     loadTweetsP()
+        .then(() => {
+            hideLoadingIndication();
+        })
         .then(() => {
             setInterval(loadTweetsP,
                 10000);
         })
-        // TODO: add .then() hide loading message / gif
         .catch(err => {
             alert(`Error loading tweets: ${err}`);
-            // TODO: .then hide loading message / gif
+            hideLoadingIndication();
         });
 
 }

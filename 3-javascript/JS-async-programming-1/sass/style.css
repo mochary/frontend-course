@@ -164,6 +164,16 @@
 .page-container .center-news-feed .tweet-action-container .tweet-action-item {
   padding: 1em;
 }
+.page-container .center-news-feed .loading {
+  position: fixed;
+  top: 3em;
+  opacity: 0.6;
+  z-index: 1000;
+}
+.page-container .center-news-feed .loading img {
+  max-width: 30em;
+  border-radius: 2em;
+}
 .page-container .right-side-menu-container {
   flex-grow: 1;
 }
